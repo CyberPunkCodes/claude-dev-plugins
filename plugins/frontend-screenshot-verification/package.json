@@ -1,0 +1,9 @@
+{
+  "name": "frontend-screenshot-verification",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Screenshot-based responsive verification engine for web projects. Playwright is a plugin-local dependency (bootstrapped on first run) so host projects never need it.",
+  "dependencies": {
+    "playwright": "^1.61.1"
+  }
+}

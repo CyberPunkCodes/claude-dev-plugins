@@ -1,0 +1,29 @@
+[
+  { "name": "iPhone 16", "width": 393, "height": 852, "dpr": 3, "tier": "light" },
+  { "name": "Samsung Galaxy S25", "width": 360, "height": 780, "dpr": 3, "tier": "light" },
+  { "name": "Desktop 2xl breakpoint", "width": 1536, "height": 960, "dpr": 1, "tier": "light" },
+  { "name": "Ultrawide (3440x1440)", "width": 3440, "height": 1440, "dpr": 1, "tier": "light" },
+
+  { "name": "iPhone 16 Pro Max / 17 Pro Max", "width": 440, "height": 956, "dpr": 3, "tier": "medium" },
+  { "name": "Samsung Galaxy S25 Ultra / S26 Ultra", "width": 412, "height": 915, "dpr": 3.5, "tier": "medium" },
+  { "name": "Google Pixel 10 / 10a", "width": 411, "height": 923, "dpr": 2.65, "tier": "medium" },
+  { "name": "iPad Air 11in / Pro 11in (landscape)", "width": 1194, "height": 834, "dpr": 2, "tier": "medium" },
+  { "name": "Desktop xl breakpoint", "width": 1280, "height": 900, "dpr": 1, "tier": "medium" },
+  { "name": "Desktop FHD (1920x1080)", "width": 1920, "height": 1080, "dpr": 1, "tier": "medium" },
+
+  { "name": "iPhone 17 / iPhone 16 Pro / iPhone 17 Pro", "width": 402, "height": 874, "dpr": 3, "tier": "full" },
+  { "name": "iPhone 17 Air", "width": 420, "height": 912, "dpr": 3, "tier": "full" },
+  { "name": "iPhone 16 Plus", "width": 430, "height": 932, "dpr": 3, "tier": "full" },
+  { "name": "Samsung Galaxy S26+", "width": 384, "height": 854, "dpr": 3, "tier": "full" },
+  { "name": "Samsung Galaxy S26", "width": 360, "height": 800, "dpr": 3, "tier": "full" },
+  { "name": "Samsung Galaxy S25+ / S25 Edge", "width": 412, "height": 891, "dpr": 3.5, "tier": "full" },
+  { "name": "Google Pixel 10 Pro", "width": 427, "height": 952, "dpr": 3, "tier": "full" },
+  { "name": "Google Pixel 10 Pro XL", "width": 448, "height": 968, "dpr": 3, "tier": "full" },
+  { "name": "Samsung Galaxy Z Fold 7 (Inner)", "width": 984, "height": 1092, "dpr": 2, "tier": "full" },
+  { "name": "Google Pixel 9 Pro Fold (Inner)", "width": 840, "height": 820, "dpr": 2.5, "tier": "full" },
+  { "name": "iPad Mini (portrait)", "width": 744, "height": 1133, "dpr": 2, "tier": "full" },
+  { "name": "Google Pixel Tablet / Galaxy Tab S11 / Tab S10 (11in)", "width": 800, "height": 1280, "dpr": 2, "tier": "full" },
+  { "name": "Samsung Galaxy Tab S11 Ultra / Tab S10 Ultra (14.6in)", "width": 924, "height": 1480, "dpr": 2, "tier": "full" },
+  { "name": "OnePlus Pad 2 (12.1in)", "width": 1060, "height": 1500, "dpr": 2, "tier": "full" },
+  { "name": "Generic tightest mobile (stress test)", "width": 320, "height": 800, "dpr": 1, "tier": "full" }
+]

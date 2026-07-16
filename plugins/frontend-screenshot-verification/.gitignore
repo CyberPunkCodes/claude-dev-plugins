@@ -1,0 +1,7 @@
+# Plugin-local dependencies — bootstrapped on first run, never committed.
+node_modules/
+
+# Screenshot output lands in <project>/.verify-shots/, not here, but ignore
+# any stray runs just in case.
+verify-shots/
+last-run.json

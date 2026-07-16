@@ -1,0 +1,9 @@
+# Plugin-local deps are bootstrapped on first run, never committed.
+**/node_modules/
+
+# Screenshot output / run state produced when a plugin runs.
+**/.verify-shots/
+**/verify-shots/
+**/last-run.json
+
+.DS_Store
