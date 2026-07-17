@@ -10,8 +10,7 @@
     {
       "name": "frontend-screenshot-verification",
       "source": "./plugins/frontend-screenshot-verification",
-      "description": "Screenshot-based responsive verification for any web project — Playwright across a tiered device-viewport matrix, self-bootstrapping, framework-agnostic (Astro/Next/SvelteKit/Vite/static/any URL).",
-      "version": "1.0.0"
+      "description": "Screenshot-based responsive verification for any web project — Playwright across a tiered device-viewport matrix, self-bootstrapping, framework-agnostic (Astro/Next/SvelteKit/Vite/static/any URL)."
     }
   ]
 }

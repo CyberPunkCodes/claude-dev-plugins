@@ -1,7 +1,6 @@
 {
   "name": "frontend-screenshot-verification",
   "description": "Screenshot-based responsive verification for any web project. Drives a real browser (Playwright) across a tiered set of current device viewports (iPhone/Android/iPad/tablets/foldables + desktop breakpoints) against a throwaway dev server — or any URL — flagging horizontal-overflow breaks. Bootstraps its own Playwright + Chromium on first run; no host-machine assumptions. Works with Astro, Next, SvelteKit, Vite, Remix, static sites, or a live URL. Run after frontend changes that could shift layout.",
-  "version": "1.0.0",
   "author": {
     "name": "Cyber Punk"
   }
