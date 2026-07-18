@@ -53,6 +53,59 @@ function sh(cmd, args, opts) {
   if (r.status !== 0) throw new Error(`\`${cmd} ${args.join(' ')}\` exited with code ${r.status}`);
 }
 
+/** Run `git` with captured output; never throws. Returns {ok, status, stdout}. */
+function git(args, cwd) {
+  const r = spawnSync('git', args, { cwd, encoding: 'utf8' });
+  return { ok: !r.error && r.status === 0, status: r.status, stdout: r.stdout || '' };
+}
+
+/**
+ * Guarantee `.verify-shots/` is git-ignored, deterministically, so screenshot
+ * output never lands in the user's commits. This lives in code (not the skill's
+ * agent instructions) so it happens on every run regardless of the model.
+ *
+ * Silent no-op outside a git work tree. Detection uses `git check-ignore` so it
+ * honors nested `.gitignore` files and the user's global excludes — not just a
+ * grep of the root file. Only ever edits the repo-root `.gitignore`; never
+ * stages, commits, or removes anything.
+ */
+function ensureGitignore(projectDir) {
+  const ENTRY = '.verify-shots/';
+
+  // Gate: only act inside a git work tree. This also guarantees `check-ignore`
+  // below can only return 0/1, never git's fatal 128 (git missing / not a repo).
+  const inTree = git(['rev-parse', '--is-inside-work-tree'], projectDir);
+  if (!inTree.ok || inTree.stdout.trim() !== 'true') return;
+
+  // "Already tracked" guard: if it was committed before being ignored, a
+  // .gitignore entry does nothing. Warn (with the fix) but never run it.
+  if (git(['ls-files', '--error-unmatch', ENTRY], projectDir).ok) {
+    console.log(`⚠ ${ENTRY} is already tracked by git — screenshots will be committed.`);
+    console.log(`  Stop tracking it (keeps the files on disk):  git rm -r --cached ${ENTRY}`);
+  }
+
+  // Detection: exit 0 = already ignored (root/nested/global) → no-op.
+  if (git(['check-ignore', '-q', ENTRY], projectDir).ok) return;
+
+  // Not ignored → append to the repo-root .gitignore, keyed on the path so a
+  // reworded comment can never produce a duplicate entry.
+  const root = git(['rev-parse', '--show-toplevel'], projectDir);
+  if (!root.ok) return;
+  const giPath = path.join(root.stdout.trim(), '.gitignore');
+  let existing = '';
+  try { existing = fs.readFileSync(giPath, 'utf8'); } catch { /* no file yet */ }
+  if (existing.split(/\r?\n/).some((l) => l.trim() === ENTRY)) return;
+
+  const prefix = existing.length === 0 ? '' : existing.endsWith('\n') ? '\n' : '\n\n';
+  const block =
+    prefix +
+    '# Added by frontend-screenshot-verification (claude-dev-plugins marketplace)\n' +
+    '# https://github.com/CyberPunkCodes/claude-dev-plugins\n' +
+    ENTRY + '\n';
+  fs.appendFileSync(giPath, block);
+  console.log(`[gitignore] added ${ENTRY} to ${giPath}`);
+}
+
 /**
  * Ensure Playwright + a Chromium binary are available, installing into THIS
  * plugin's own directory on first use (never the host project). Returns the
@@ -195,6 +248,7 @@ async function main() {
 
   const outDir = path.join(PROJECT_DIR, '.verify-shots');
   fs.mkdirSync(outDir, { recursive: true });
+  ensureGitignore(PROJECT_DIR);
   const devices = devicesForTier(tier);
 
   let server = null;
