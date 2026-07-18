@@ -59,8 +59,9 @@ node "${CLAUDE_PLUGIN_ROOT}/run.cjs" <light|medium|full> [page ...]
   entirely. Override the launch command with `VERIFY_DEV_CMD` if needed.
 - Pages default to `/`. Pass route paths as trailing args:
   `… run.cjs light / /pricing /contact`.
-- Output → `<project>/.verify-shots/` (PNGs + `last-run.json`). Add
-  `.verify-shots/` to the project's `.gitignore` if not already covered.
+- Output → `<project>/.verify-shots/` (PNGs + `last-run.json`). The runner
+  auto-manages the `.verify-shots/` entry in the project's `.gitignore` — no
+  need to edit it yourself.
 
 ## Reading the result
 
